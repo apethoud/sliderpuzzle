@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 header-text">
+      <h1 class="text-center">Slider Puzzle</h1>
+      <p class="text-center">Put the tiles in order from 1 to 8 by sliding them into position.</p>
+      <p class="text-center">Click a tile to slide it.</p>
+    </div>
+  </div>
+  <div class="row" id="victory">
+    <div class="col-xs-12">
+      <h2 class="text-center hidden" id="victory-text">Victory! Great job!</h2>
+    </div>
+  </div>
+  <div class="row" id="new-game">
+    <div class="col-xs-12">
+      <div class="text-center">
+        <button type="button" class="btn btn-default" id="new-game-btn">New Game</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="tile-bg">
+  <div class="tile-grid">
+    <div class="square" id="s1">
+      <div class="number text-center"></div>
+    </div>
+    <div class="square" id="s2">
+      <div class="number text-center"></div>
+    </div>
+    <div class="square" id="s3">
+      <div class="number text-center"></div>
+    </div>
+    <div class="square" id="s4">
+      <div class="number text-center"></div>
+    </div>
+    <div class="square" id="s5">
+      <div class="number text-center"></div>
+    </div>
+    <div class="square" id="s6">
+      <div class="number text-center"></div>
+    </div>
+    <div class="square" id="s7">
+      <div class="number text-center"></div>
+    </div>
+    <div class="square" id="s8">
+      <div class="number text-center"></div>
+    </div>
+    <div class="square invisible" id="s9">
+      <div class="number text-center"></div>
+    </div>
+  </div>
+</div>
+
+<p class="text-center">&copy; 2017 Andrew Pethoud. All rights reserved.</p>
+
+<!-- scripts -->
+<script src="js/sliderpuzzle.js"></script>
+
+</body>
+</html>
