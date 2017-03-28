@@ -62,6 +62,7 @@ function newGame(){
 }
 
 function numberFadeOut(){
+  console.log("running numberFadeOut");
   squareOne.firstElementChild.style.color = "#FFCA14";
   squareTwo.firstElementChild.style.color = "#FFCA14";
   squareThree.firstElementChild.style.color = "#FFCA14";
@@ -74,7 +75,15 @@ function numberFadeOut(){
 }
 
 function numberFadeIn(){
-  tileNumbers.style.color = "#32354F";
+  squareOne.firstElementChild.style.color = "#32354F";
+  squareTwo.firstElementChild.style.color = "#32354F";
+  squareThree.firstElementChild.style.color = "#32354F";
+  squareFour.firstElementChild.style.color = "#32354F";
+  squareFive.firstElementChild.style.color = "#32354F";
+  squareSix.firstElementChild.style.color = "#32354F";
+  squareSeven.firstElementChild.style.color = "#32354F";
+  squareEight.firstElementChild.style.color = "#32354F";
+  squareNine.firstElementChild.style.color = "#32354F";
 }
 
 tileGrid.addEventListener('click', function(e){
@@ -199,24 +208,30 @@ tileGrid.addEventListener('click', function(e){
   }
 });
 
-newGameBtn.addEventListener('click', function(){
-  numberFadeOut();
-  // randomizeOrder();
-  // squareNine.firstElementChild.textContent = "";
-  //
-  // squareOne.classList.remove('invisible');
-  // squareTwo.classList.remove('invisible');
-  // squareThree.classList.remove('invisible');
-  // squareFour.classList.remove('invisible');
-  // squareFive.classList.remove('invisible');
-  // squareSix.classList.remove('invisible');
-  // squareSeven.classList.remove('invisible');
-  // squareEight.classList.remove('invisible');
-  // squareNine.classList.add('invisible');
-  //
-  // victoryText.classList.add('hidden');
-  // newGameBtn.classList.remove('glow');
-  // vict = false;
+newGameBtn.addEventListener('click', numberFadeOut);
+
+squareOne.addEventListener('transitionend', function(){
+  console.log("transitionend");
+  if(squareOne.firstElementChild.style.color === "rgb(255, 202, 20)"){
+    randomizeOrder();
+    squareNine.firstElementChild.textContent = "";
+
+    squareOne.classList.remove('invisible');
+    squareTwo.classList.remove('invisible');
+    squareThree.classList.remove('invisible');
+    squareFour.classList.remove('invisible');
+    squareFive.classList.remove('invisible');
+    squareSix.classList.remove('invisible');
+    squareSeven.classList.remove('invisible');
+    squareEight.classList.remove('invisible');
+    squareNine.classList.add('invisible');
+
+    victoryText.classList.add('hidden');
+    newGameBtn.classList.remove('glow');
+    vict = false;
+
+    numberFadeIn();
+  }
 });
 
 // tileNumbers.addEventListener('transitionend', numberFadeIn);
