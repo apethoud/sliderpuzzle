@@ -1,18 +1,19 @@
 var victoryText = document.querySelector('#victory-text');
 var newGameBtn = document.querySelector('#new-game-btn');
 var tileGrid = document.querySelector('.tile-grid');
+var tileNumbers = document.querySelectorAll('.number');
 var numberList = ['1','2','3','4','5','6','7','8'];
 var vict = false;
 
-var squareOne = document.querySelector('#s1');
-var squareTwo = document.querySelector('#s2');
-var squareThree = document.querySelector('#s3');
-var squareFour = document.querySelector('#s4');
-var squareFive = document.querySelector('#s5');
-var squareSix = document.querySelector('#s6');
-var squareSeven = document.querySelector('#s7');
-var squareEight = document.querySelector('#s8');
-var squareNine = document.querySelector('#s9');
+var squareOne = document.getElementById('s1');
+var squareTwo = document.getElementById('s2');
+var squareThree = document.getElementById('s3');
+var squareFour = document.getElementById('s4');
+var squareFive = document.getElementById('s5');
+var squareSix = document.getElementById('s6');
+var squareSeven = document.getElementById('s7');
+var squareEight = document.getElementById('s8');
+var squareNine = document.getElementById('s9');
 
 function switchTiles(a,b){
   var numberInA = a.firstElementChild.textContent;
@@ -43,7 +44,38 @@ function randomizeOrder(){
   squareEight.firstElementChild.textContent = numberList[7];
 }
 
-randomizeOrder();
+function newGame(){
+  console.log("running newGame");
+  randomizeOrder();
+
+  squareNine.firstElementChild.textContent = "";
+
+  squareOne.classList.remove('invisible');
+  squareTwo.classList.remove('invisible');
+  squareThree.classList.remove('invisible');
+  squareFour.classList.remove('invisible');
+  squareFive.classList.remove('invisible');
+  squareSix.classList.remove('invisible');
+  squareSeven.classList.remove('invisible');
+  squareEight.classList.remove('invisible');
+  squareNine.classList.add('invisible');
+}
+
+function numberFadeOut(){
+  squareOne.firstElementChild.style.color = "#FFCA14";
+  squareTwo.firstElementChild.style.color = "#FFCA14";
+  squareThree.firstElementChild.style.color = "#FFCA14";
+  squareFour.firstElementChild.style.color = "#FFCA14";
+  squareFive.firstElementChild.style.color = "#FFCA14";
+  squareSix.firstElementChild.style.color = "#FFCA14";
+  squareSeven.firstElementChild.style.color = "#FFCA14";
+  squareEight.firstElementChild.style.color = "#FFCA14";
+  squareNine.firstElementChild.style.color = "#FFCA14";
+}
+
+function numberFadeIn(){
+  tileNumbers.style.color = "#32354F";
+}
 
 tileGrid.addEventListener('click', function(e){
   // when you click a square:
@@ -168,20 +200,32 @@ tileGrid.addEventListener('click', function(e){
 });
 
 newGameBtn.addEventListener('click', function(){
-  randomizeOrder();
-  squareNine.firstElementChild.textContent = "";
-
-  squareOne.classList.remove('invisible');
-  squareTwo.classList.remove('invisible');
-  squareThree.classList.remove('invisible');
-  squareFour.classList.remove('invisible');
-  squareFive.classList.remove('invisible');
-  squareSix.classList.remove('invisible');
-  squareSeven.classList.remove('invisible');
-  squareEight.classList.remove('invisible');
-  squareNine.classList.add('invisible');
-
-  victoryText.classList.add('hidden');
-  newGameBtn.classList.remove('glow');
-  vict = false;
+  numberFadeOut();
+  // randomizeOrder();
+  // squareNine.firstElementChild.textContent = "";
+  //
+  // squareOne.classList.remove('invisible');
+  // squareTwo.classList.remove('invisible');
+  // squareThree.classList.remove('invisible');
+  // squareFour.classList.remove('invisible');
+  // squareFive.classList.remove('invisible');
+  // squareSix.classList.remove('invisible');
+  // squareSeven.classList.remove('invisible');
+  // squareEight.classList.remove('invisible');
+  // squareNine.classList.add('invisible');
+  //
+  // victoryText.classList.add('hidden');
+  // newGameBtn.classList.remove('glow');
+  // vict = false;
 });
+
+// tileNumbers.addEventListener('transitionend', numberFadeIn);
+
+randomizeOrder();
+
+// click the newgame button
+  // change text color to yellow - transition end is triggered afterwards
+  // a separate event listener is listening for transitionend
+    // that event listener will check if color is yellow (if style.color === yellow, then...)
+    // if it's yellow, then it should randomizeOrder and change color to black again
+    // that "to black" transitionend will trigger this function again, but won't get past the if statement, so it won't randomize again
