@@ -1,9 +1,9 @@
 var victoryText = document.querySelector('#victory-text');
 var newGameBtn = document.querySelector('#new-game-btn');
 var tileGrid = document.querySelector('.tile-grid');
-var tileNumbers = document.querySelectorAll('.number');
 var numberList = ['1','2','3','4','5','6','7','8'];
 var vict = false;
+var numbersFadedOut = false;
 
 var squareOne = document.getElementById('s1');
 var squareTwo = document.getElementById('s2');
@@ -44,25 +44,8 @@ function randomizeOrder(){
   squareEight.firstElementChild.textContent = numberList[7];
 }
 
-function newGame(){
-  console.log("running newGame");
-  randomizeOrder();
-
-  squareNine.firstElementChild.textContent = "";
-
-  squareOne.classList.remove('invisible');
-  squareTwo.classList.remove('invisible');
-  squareThree.classList.remove('invisible');
-  squareFour.classList.remove('invisible');
-  squareFive.classList.remove('invisible');
-  squareSix.classList.remove('invisible');
-  squareSeven.classList.remove('invisible');
-  squareEight.classList.remove('invisible');
-  squareNine.classList.add('invisible');
-}
-
 function numberFadeOut(){
-  console.log("running numberFadeOut");
+  numbersFadedOut = true;
   squareOne.firstElementChild.style.color = "#FFCA14";
   squareTwo.firstElementChild.style.color = "#FFCA14";
   squareThree.firstElementChild.style.color = "#FFCA14";
@@ -75,6 +58,7 @@ function numberFadeOut(){
 }
 
 function numberFadeIn(){
+  numbersFadedOut = false;
   squareOne.firstElementChild.style.color = "#32354F";
   squareTwo.firstElementChild.style.color = "#32354F";
   squareThree.firstElementChild.style.color = "#32354F";
@@ -87,9 +71,7 @@ function numberFadeIn(){
 }
 
 tileGrid.addEventListener('click', function(e){
-  // when you click a square:
-
-    // check if one of that square's horizontal and vertical neighbors is empty. If not, do nothing. If so:
+  // when you click a square, check if one of that square's horizontal and vertical neighbors is empty. If not, do nothing. If so, switch the squares.
   var clickedTile = e.target;
 
   if(!vict){
@@ -211,8 +193,8 @@ tileGrid.addEventListener('click', function(e){
 newGameBtn.addEventListener('click', numberFadeOut);
 
 squareOne.addEventListener('transitionend', function(){
-  console.log("transitionend");
-  if(squareOne.firstElementChild.style.color === "rgb(255, 202, 20)"){
+  // looks for end of transition from numberFadeOut
+  if(numbersFadedOut === true){
     randomizeOrder();
     squareNine.firstElementChild.textContent = "";
 
@@ -234,13 +216,4 @@ squareOne.addEventListener('transitionend', function(){
   }
 });
 
-// tileNumbers.addEventListener('transitionend', numberFadeIn);
-
 randomizeOrder();
-
-// click the newgame button
-  // change text color to yellow - transition end is triggered afterwards
-  // a separate event listener is listening for transitionend
-    // that event listener will check if color is yellow (if style.color === yellow, then...)
-    // if it's yellow, then it should randomizeOrder and change color to black again
-    // that "to black" transitionend will trigger this function again, but won't get past the if statement, so it won't randomize again
