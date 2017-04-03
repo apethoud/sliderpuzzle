@@ -216,4 +216,5 @@ squareOne.addEventListener('transitionend', function(){
   }
 });
 
+// Set up tile grid on page load
 randomizeOrder();
